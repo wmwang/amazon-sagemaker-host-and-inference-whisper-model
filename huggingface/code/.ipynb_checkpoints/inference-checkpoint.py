@@ -42,7 +42,7 @@ def transform_fn(model, request_body, request_content_type, response_content_typ
     tfile.write(file.read())
 
     logging.info("Start to generate the transcription ...")
-    result = model(tfile.name, batch_size=8)["text"]
+    result = model(tfile.name, batch_size=8, generate_kwargs={"language": "Chinese"})["text"]
     
     logging.info("Upload transcription results back to S3 bucket ...")
     
